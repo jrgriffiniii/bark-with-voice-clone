@@ -137,6 +137,7 @@ def _grab_best_device(use_gpu=True):
         device = "cuda"
     elif torch.backends.mps.is_available() and use_gpu and GLOBAL_ENABLE_MPS:
         device = "mps"
+        print("USING MPS")
     else:
         device = "cpu"
     return device
