@@ -133,15 +133,10 @@ def _get_ckpt_path(model_type, use_small=False, path=None):
 
 
 def _grab_best_device(use_gpu=True):
-    print(f"TRACE")
-    print(f"use_gpu: {use_gpu}")
-    print(f"torch mps: {torch.backends.mps.is_available()}")
-    print(f"mps global: {GLOBAL_ENABLE_MPS}")
     if torch.cuda.device_count() > 0 and use_gpu:
         device = "cuda"
     elif torch.backends.mps.is_available() and use_gpu and GLOBAL_ENABLE_MPS:
         device = "mps"
-        print("USING MPS")
     else:
         device = "cpu"
     return device
